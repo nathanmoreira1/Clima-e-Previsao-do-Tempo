@@ -1,0 +1,162 @@
+/* general page stylization */
+.Home {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/Desktop.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* stylization of the city choice field */
+.Home-Input-Field {
+    position: absolute;
+    top: 30vh;
+}
+.Home-Form {
+    width: 710px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #FFF;
+}
+.Home-Form input {
+    width: 100%;
+    height: 50px;
+    border: none;
+    background: rgba(255, 255, 255, 0.77);
+    border-radius: 10px;
+    padding-left: 15px;
+    line-height: 24px;
+    font-size: 20px;
+    font-style: normal;
+    color: #6AA2D1;
+    margin-bottom: 1px;
+}
+.Home-Form input::placeholder {
+    color: #6AA2D1;
+}
+.Home-Form input:focus {
+    outline: none;
+    box-shadow: none;
+}
+.Home-Form h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 43px;
+    line-height: 52px;
+    letter-spacing: 0.14em;
+    white-space: nowrap;
+    margin-bottom: 15px;
+}
+.results-of-search-field {
+    background: rgba(255, 255, 255, 0.77);
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+    padding-left: 15px;
+    z-index: 1;
+}
+.results-of-search-field a {
+    color: #6AA2D1;
+    text-decoration: none;
+}
+
+/* stylization of the language choice field */
+.language-choice-field {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    bottom: 15px;
+}
+.language-choice-field p {
+    color: #FFF;
+}
+.languages-options {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.languages-options img {
+    width: 30px;
+    cursor: pointer;
+}
+/* styles from the toogle button */
+.toogle-field {
+    display: flex;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    align-items: center;
+    gap: 5px;
+}
+.toogle-field p {
+    width: 17px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: 0.05em;
+    color: #D9D9D9;height: 18px;
+}
+.toogle-unit {
+    appearance: none;
+    position: relative;
+    width: 52px;
+    height: 30px;
+    background: rgba(28, 36, 40, 0.49);
+    border-radius: 20px;    
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.4s;
+}
+.toogle-unit:checked {
+    background: #D2B3C1;
+}
+.toogle-unit::before {
+    content: '';
+    width: 21px;
+    height: 20px;
+    background: #D9D9D9;
+    border-radius: 50%;
+    position: absolute;
+    left: 5px;
+    transform: scale(1.1);
+    transition: 0.4s;
+}
+.toogle-unit:checked::before {
+    left: 25px;
+}
+/* media queries from the adaptation for the mobile */
+@media(max-width: 790px) {
+    .Home-Form {
+        width: 90vw;
+    }
+    .Home-Form h1 {
+        font-size: 38px;
+        white-space: pre-wrap;
+        text-align: center;
+    }
+}
+@media(max-width:440px) {
+    .Home-Form h1 {
+        font-size: 34px;
+    }
+}
+@media(max-width: 380px) {
+    .Home-Form h1 {
+        font-size: 30px;
+    }
+}
+@media(max-height: 530px) {
+    .language-choice-field {
+        display: none;
+    }
+    .Home {
+        height: 700px;
+    }
+}
