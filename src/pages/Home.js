@@ -5,11 +5,10 @@ import brasil_icon from "../images/brasil_icon.svg"
 import spain_icon from "../images/spain_icon.svg"
 import usa_icon from "../images/usa_icon.svg"
 //hooks
-import {useState, useRef, useEffect} from "react"
-//places autocomplete 
+import { useState, useRef, useEffect } from "react"
+//libs
 import PlacesAutocomplete from "react-places-autocomplete"
-//react-router-dom
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     // states for language change
@@ -23,7 +22,7 @@ const Home = () => {
     //states for things about places autocomplet
     const [adress, setAdress] = useState("");
     const inputOfAdresses = useRef();
-    
+
     //state for unit change
     const [unit, setUnit] = useState("metric")
     const [checked, setChecked] = useState(
@@ -33,7 +32,7 @@ const Home = () => {
     // reset border-radius from input
     useEffect(() => {
         const resetBorderRadiusFromInput = () => {
-            if(adress !== "") {
+            if (adress !== "") {
                 inputOfAdresses.current.style.borderRadius = "10px 10px 0 0"
             }
             else {
@@ -46,7 +45,7 @@ const Home = () => {
     //check and uncheck button of metric change
     useEffect(() => {
         const controllUnitsChanges = () => {
-            if(unit === "metric") {
+            if (unit === "metric") {
                 setChecked(true);
             }
             else {
@@ -59,7 +58,7 @@ const Home = () => {
     //controll page language
     const changePageLanguage = (lang) => {
         setSelectedLanguage(lang);
-        switch(lang) {
+        switch (lang) {
             case "pt_br":
                 setText({
                     cityNameText: "Digite o nome da cidade",
@@ -84,22 +83,22 @@ const Home = () => {
         }
     }
 
-    return(
+    return (
         <div className="Home">
             <div className="toogle-field">
                 <p>°F</p>
                 <input type="checkbox" checked={checked} className="toogle-unit" onChange={() => {
                     unit === "metric" ? setUnit("imperial") : setUnit("metric")
-                }}/>
+                }} />
                 <p>°C</p>
             </div>
             <div className="Home-Input-Field">
                 <form className="Home-Form">
                     <h1>{text.headerText}</h1>
                     <PlacesAutocomplete value={adress} onChange={setAdress}>
-                        {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
+                        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                             <>
-                                <input {...getInputProps({placeholder: text.cityNameText})} ref={inputOfAdresses}/>
+                                <input {...getInputProps({ placeholder: text.cityNameText })} ref={inputOfAdresses} />
                                 {loading ? null : null}
                                 <div className={"results-of-search-field"}>
                                     {suggestions.map((suggestion, i) => {
@@ -109,15 +108,14 @@ const Home = () => {
                                             marginTop: "15px",
                                             marginBottom: "15px",
                                         }
-                                        return(
-                                            <div key={i} {...getSuggestionItemProps(suggestion, {style})}>
-                                                <Link to={`/${
-                                                    JSON.stringify({
-                                                        cityName: suggestion.description,
-                                                        language: selectedLanguage,
-                                                        unit: unit
-                                                    })
-                                                }`}>
+                                        return (
+                                            <div key={i} {...getSuggestionItemProps(suggestion, { style })}>
+                                                <Link to={`/${JSON.stringify({
+                                                    cityName: suggestion.description,
+                                                    language: selectedLanguage,
+                                                    unit: unit
+                                                })
+                                                    }`}>
                                                     <p>{suggestion.description}</p>
                                                 </Link>
                                             </div>
@@ -133,7 +131,7 @@ const Home = () => {
                 <div className="languages-options">
                     <img src={brasil_icon} alt="brasil" onClick={() => changePageLanguage("pt_br")} />
                     <img src={usa_icon} alt="usa" onClick={() => changePageLanguage("en")} />
-                    <img src={spain_icon} alt="spain" onClick={() => changePageLanguage("es")}/>
+                    <img src={spain_icon} alt="spain" onClick={() => changePageLanguage("es")} />
                 </div>
                 <p>{text.selectedLanguageText}</p>
             </div>
